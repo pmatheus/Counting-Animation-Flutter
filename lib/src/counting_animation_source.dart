@@ -7,25 +7,25 @@ class CountingAnimation extends StatefulWidget {
   final int precision;
   final Curve curve;
   final Duration duration;
-  final TextStyle largeValueStyle;
-  final TextAlign textAlign;
-  final TextDirection textDirection;
-  final Locale locale;
-  final bool softWrap;
-  final TextOverflow overflow;
-  final double textScaleFactor;
-  final int maxLines;
-  final String semanticsLabel;
-  final String separator;
+  final TextStyle? largeValueStyle;
+  final TextAlign? textAlign;
+  final TextDirection? textDirection;
+  final Locale? locale;
+  final bool? softWrap;
+  final TextOverflow? overflow;
+  final double? textScaleFactor;
+  final int? maxLines;
+  final String? semanticsLabel;
+  final String? separator;
   final String prefix;
-  final TextStyle smallValueStyle;
+  final TextStyle? smallValueStyle;
   final String suffix;
-  final Color color;
+  final Color? color;
 
   CountingAnimation({
-    Key key,
-    @required this.beginValue,
-    @required this.endValue,
+    Key? key,
+    required this.beginValue,
+    required this.endValue,
     this.precision = 0,
     this.color,
     this.curve = Curves.linear,
@@ -51,10 +51,10 @@ class CountingAnimation extends StatefulWidget {
 
 class _CountupState extends State<CountingAnimation>
     with TickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> _animation;
-  double _latestBegin;
-  double _latestEnd;
+  late AnimationController _controller;
+  late Animation<double> _animation;
+  double? _latestBegin;
+  double? _latestEnd;
 
   @override
   void dispose() {
@@ -115,25 +115,25 @@ class _CountupAnimatedText extends AnimatedWidget {
 
   final Animation<double> animation;
   final int precision;
-  final TextStyle largeValueStyle;
-  final TextAlign textAlign;
-  final TextDirection textDirection;
-  final Locale locale;
-  final bool softWrap;
-  final TextOverflow overflow;
-  final double textScaleFactor;
-  final int maxLines;
-  final String semanticsLabel;
-  final String separator;
-  final String prefix;
-  final String suffix;
-  final Color color;
-  final TextStyle smallValueStyle;
+  final TextStyle? largeValueStyle;
+  final TextAlign? textAlign;
+  final TextDirection? textDirection;
+  final Locale? locale;
+  final bool? softWrap;
+  final TextOverflow? overflow;
+  final double? textScaleFactor;
+  final int? maxLines;
+  final String? semanticsLabel;
+  final String? separator;
+  final String? prefix;
+  final String? suffix;
+  final Color? color;
+  final TextStyle? smallValueStyle;
 
   _CountupAnimatedText({
-    Key key,
-    @required this.animation,
-    @required this.precision,
+    Key? key,
+    required this.animation,
+    required this.precision,
     this.largeValueStyle,
     this.suffix,
     this.smallValueStyle,
@@ -157,10 +157,10 @@ class _CountupAnimatedText extends AnimatedWidget {
       child: RichText(
         text: prefix != null
             ? TextSpan(
-                text: prefix + animation.value.toInt().toString(),
+                text: prefix! + animation.value.toInt().toString(),
                 style: largeValueStyle != null
                     ? largeValueStyle
-                    : Theme.of(context).textTheme.headline4.copyWith(
+                    : Theme.of(context).textTheme.headline4!.copyWith(
                         fontSize: mediaQuery.size.width < 350 ? 16 : 20,
                         color: color),
                 children: [
@@ -171,10 +171,10 @@ class _CountupAnimatedText extends AnimatedWidget {
                                 .split('.')[1]
                                 .replaceAllMapped(reg,
                                     (Match match) => '${match[1]}$separator') +
-                            suffix,
+                            suffix!,
                         style: smallValueStyle != null
                             ? smallValueStyle
-                            : Theme.of(context).textTheme.headline4.copyWith(
+                            : Theme.of(context).textTheme.headline4!.copyWith(
                                 fontSize: mediaQuery.size.width < 350 ? 12 : 14,
                                 color: color)),
                   ])
@@ -182,7 +182,7 @@ class _CountupAnimatedText extends AnimatedWidget {
                 text: animation.value.toInt().toString(),
                 style: largeValueStyle != null
                     ? largeValueStyle
-                    : Theme.of(context).textTheme.headline4.copyWith(
+                    : Theme.of(context).textTheme.headline4!.copyWith(
                         fontSize: mediaQuery.size.width < 350 ? 16 : 20,
                         color: color),
                 children: [
@@ -193,10 +193,10 @@ class _CountupAnimatedText extends AnimatedWidget {
                                 .split('.')[1]
                                 .replaceAllMapped(reg,
                                     (Match match) => '${match[1]}$separator') +
-                            suffix,
+                            suffix!,
                         style: smallValueStyle != null
                             ? smallValueStyle
-                            : Theme.of(context).textTheme.headline4.copyWith(
+                            : Theme.of(context).textTheme.headline4!.copyWith(
                                 fontSize: mediaQuery.size.width < 350 ? 12 : 14,
                                 color: color)),
                   ]),
